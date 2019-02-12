@@ -26,6 +26,7 @@ app.use(bodyParser.json())
 
 app.use(passport.initialize())
 app.use(passport.session())
+require('./auth/passport')(passport)
 
 app.get('/', (req, res, next) => {
     res.json({ status: true, message: 'Hello World !' })
