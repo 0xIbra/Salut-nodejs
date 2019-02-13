@@ -7,4 +7,4 @@ const LocationSchema = mongoose.Schema({
     created_at: { type: Date, default: Date.now }
 })
 
-const Address = module.exports = mongoose.model('Location', LocationSchema)
+const Location = module.exports = mongoose.model('Location', LocationSchema)

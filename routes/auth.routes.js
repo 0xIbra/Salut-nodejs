@@ -12,4 +12,9 @@ router.post('/register', [
     
 ], AuthController.register)
 
+router.post('/login', [
+    check('email').exists().withMessage('L\'adresse email n\'a pas été trouvée').isEmail().withMessage('L\'adresse email est invalide'),
+    check('password').exists().withMessage('Le mot de passe n\'a pas été trouvé').isLength({min: 6}).withMessage('Le mot de passe doit contenir au moins 6 caractères')
+], AuthController.login)
+
 module.exports = router

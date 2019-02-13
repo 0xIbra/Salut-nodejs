@@ -28,6 +28,10 @@ app.use(passport.initialize())
 app.use(passport.session())
 require('./auth/passport')(passport)
 
+// Importing routes
+const auth = require('./routes/auth.routes')
+app.use('/api/', auth)
+
 app.get('/', (req, res, next) => {
     res.json({ status: true, message: 'Hello World !' })
 })
