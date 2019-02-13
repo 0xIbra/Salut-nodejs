@@ -3,19 +3,20 @@ const ExtractJwt = require('passport-jwt').ExtractJwt
 const User = require('../entities/user.model')
 const UserService = require('../services/user.service')
 
-module.exports = (passport) => {
+module.exports = async (passport) => {
     let opts = {}
     opts.jwtFromRequest = ExtractJwt.fromAuthHeaderWithScheme('jwt')
     opts.secretOrKey = process.env.SECRET
-    passport.use(new JwtStrategy(opts, (jwt_payload, done) => {
-        UserService.getUserById(jwt_payload._id, (err, user) => {
-            if (err)
-                return done(err, false)
-
+    passport.use(new JwtStrategy(opts, async (jwt_payload, done) => {
+        try {
+            let user = await UserService.getUserById(jwt_payload._id)
             if (user)
                 return done(null, user)
-            else
+            else 
                 return done(null, false)
-        })
+        } catch (e) {
+            done(e, false)
+            throw e
+        }
     }))
 }
