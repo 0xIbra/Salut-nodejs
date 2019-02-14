@@ -1,0 +1,30 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: salut-api
+spec:
+  ports:
+    - port: 80
+      targetPort: 3000
+      protocol: TCP
+  selector:
+    name: salut-api
+  type: LoadBalancer
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: salut-api
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        name: salut-api
+    spec:
+      containers:
+      - name: salut-api
+        image: <ImageURL> # URL of the Docker image, you can use DockerHub, GCR and many more to store your images.
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 3000

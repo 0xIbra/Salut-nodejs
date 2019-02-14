@@ -9,6 +9,7 @@ const ParticipantSchema = mongoose.Schema({
     program: { type: mongoose.Schema.Types.ObjectId, ref: 'Program' },
     activities: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Activity' }],
     accountType: { type: mongoose.Schema.Types.ObjectId, ref: 'AccountType' },
+    accepted: { type: Boolean, default: false },
     created_at: { type: Date, default: Date.now }
 })
 

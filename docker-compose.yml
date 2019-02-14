@@ -1,0 +1,18 @@
+version: "2"
+services:
+  www:
+    container_name: www
+    restart: always
+    build: . # Building from local Dockerfile
+    ports:
+      - "8080:3000"
+    links:
+      - mongodb # Linking current Container of 'www' to the container of 'mongodb' that is defined below
+  mongodb:
+    container_name: mongodb
+    image: mongo # Using the official mongo image from DockerHub
+    volumes:
+      - ./data:/data/db # Basically what is does here is that it creates a shared folder named data, 
+                        # where it keeps the persisted data of all dbs so that when you kill the container, you can keep the data.
+    ports:
+      - "27016:27017"

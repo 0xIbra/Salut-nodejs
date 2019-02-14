@@ -30,7 +30,9 @@ require('./auth/passport')(passport)
 
 // Importing routes
 const auth = require('./routes/auth.routes')
+const event = require('./routes/event.routes')
 app.use('/api/', auth)
+app.use('/api/', event)
 
 app.get('/', (req, res, next) => {
     res.json({ status: true, message: 'Hello World !' })

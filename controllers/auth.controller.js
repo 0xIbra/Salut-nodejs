@@ -77,7 +77,7 @@ module.exports.login = async (req, res, next) => {
         let isMatch = await UserService.comparePassword(password, user.password)
         if (isMatch) {
             const token = await jwt.sign({user: user}, process.env.SECRET,{
-                expiresIn: process.env.JWT_EXPIRATION
+                expiresIn: 3600 * 48
             })
             res.json({
                 success: true,

@@ -2,6 +2,7 @@ const mongoose = require('mongoose')
 const AccountType = require('./account-type.model').schema
 const Participant = require('./participant.model').schema
 const Event = require('./event.model').schema
+const Image = require('./image.model').schema
 
 const UserSchema = mongoose.Schema({
     first_name: { type: String, required: true },
@@ -10,6 +11,7 @@ const UserSchema = mongoose.Schema({
     password: { type: String, required: true },
     role: { type: String, required: true },
     enabled: { type: Boolean, default: false },
+    image: { type: mongoose.Schema.Types.ObjectId, ref: 'Image', required: false },
     created_at: { type: Date, default: Date.now },
     type: { type: mongoose.Schema.Types.ObjectId, ref: 'AccountType' },
     events: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Event' }],

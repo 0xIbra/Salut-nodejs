@@ -9,7 +9,7 @@ module.exports = async (passport) => {
     opts.secretOrKey = process.env.SECRET
     passport.use(new JwtStrategy(opts, async (jwt_payload, done) => {
         try {
-            let user = await UserService.getUserById(jwt_payload._id)
+            let user = await UserService.getUserById(jwt_payload.user._id)
             if (user)
                 return done(null, user)
             else 

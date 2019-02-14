@@ -11,7 +11,7 @@ const EventSchema = mongoose.Schema({
     end: { type: Date, required: true },
     spots: { type: Number, required: true },
     programs: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Program' }],
-    organizer: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
+    organizer: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
     published: { type: Boolean, default: false },
     created_at: { type: Date, default: Date.now }
 })
