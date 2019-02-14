@@ -16,7 +16,7 @@ module.exports.checkIfExists = (user) => {
 
 module.exports.getUserByEmail = async (email) => {
     try {
-        const query = { email: email }
+        const query = { email: email, enabled: true }
         return await User.findOne(query)
     } catch (e) {
         throw e

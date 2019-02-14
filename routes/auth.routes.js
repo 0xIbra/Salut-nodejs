@@ -19,4 +19,6 @@ router.post('/login', [
 
 router.get('/confirm/:token', check('token').exists().withMessage('Merci de fournir le token de confirmation'), AuthController.confirm)
 
+router.get('/auth/profile', passport.authenticate('jwt', {session: false}), AuthController.profile)
+
 module.exports = router

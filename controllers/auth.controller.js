@@ -71,7 +71,7 @@ module.exports.login = async (req, res, next) => {
 
     let user = await UserService.getUserByEmail(email)
     if (!user)
-        return res.status(404).json({success: false, message: 'Utilisateur non trouvé'})
+        return res.status(404).json({success: false, message: 'Êtes-vous sûr que vous avez activé votre compte ?'})
 
     try {
         let isMatch = await UserService.comparePassword(password, user.password)
@@ -114,5 +114,13 @@ module.exports.confirm = async (req, res) => {
         } catch (e) {
             throw e
         }
+    })
+}
+
+
+module.exports.profile = (req, res) => {
+    res.json({
+        success: true,
+        user: req.user
     })
 }

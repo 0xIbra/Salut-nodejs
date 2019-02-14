@@ -1,6 +1,7 @@
 const mongoose = require('mongoose')
 const AccountType = require('./account-type.model').schema
 const Participant = require('./participant.model').schema
+const Event = require('./event.model').schema
 
 const UserSchema = mongoose.Schema({
     first_name: { type: String, required: true },
@@ -11,6 +12,7 @@ const UserSchema = mongoose.Schema({
     enabled: { type: Boolean, default: false },
     created_at: { type: Date, default: Date.now },
     type: { type: mongoose.Schema.Types.ObjectId, ref: 'AccountType' },
+    events: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Event' }],
     participations: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Participant' }]
 })
 
