@@ -21,3 +21,19 @@ const saveAll = async (data) => {
         })
     }
 }
+
+module.exports.find = async (query) => {
+    try {
+        return await Event.find(query)
+    } catch (e) {
+        return false
+    }
+}
+
+module.exports.findById = async (id) => {
+    try {
+        return await Event.findById(id).populate('organizer')
+    } catch (e) {
+        return false
+    }
+}

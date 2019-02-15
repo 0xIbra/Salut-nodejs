@@ -6,7 +6,7 @@ const User = require('./user.model').schema
 const EventSchema = mongoose.Schema({
     title: { type: String, required: true },
     description: { type: String, required: false },
-    location: { type: mongoose.Schema.Types.ObjectId, ref: 'Location' },
+    location: { type: mongoose.Schema.Types.ObjectId, ref: 'Location', required: true },
     start: { type: Date, required: true },
     end: { type: Date, required: true },
     spots: { type: Number, required: true },

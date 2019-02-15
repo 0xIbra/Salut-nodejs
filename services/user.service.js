@@ -41,7 +41,7 @@ module.exports.updateUser = async (user) => {
     try {
         return await user.save()
     } catch (e) {
-        throw e
+        return false
     }
 }
 
